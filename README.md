@@ -1,107 +1,54 @@
 # DeepWhite Theme for Typora
 
-基于 DeepWhite 博客设计系统的 Typora 主题，极简、优雅、专注阅读。
+极简、优雅、专注阅读的 Typora 主题
 
-## 特性
+## 特色功能
 
-- 🎨 **极简设计**：延续 DeepWhite 博客的设计语言
-- 📖 **阅读优化**：舒适的行高、字间距和版心宽度
-- 🔤 **字体优化**：针对 macOS、Windows、Linux 分别优化
-- 🌐 **中英文支持**：中英文混排优化，自动调整行高和字间距
-- 🎯 **语法高亮**：优雅的代码块样式
-- 📱 **响应式**：适配不同屏幕尺寸
-- 🖨️ **打印友好**：优化的 PDF 导出效果
+- **圆形任务列表**：Mac 风格的绿色圆形复选框
+- **标题自动编号**：从 H2 开始的多级编号
+- **霞鹜文楷字体**：优雅的中文排版
+- **暖白色背景**：护眼的阅读体验
+- **GitHub 警告框**：支持多种类型的提示框
 
 ## 安装方法
 
-### 方法一：手动安装
+1. 下载 `deepwhite.css` 文件
+2. 复制到 Typora 主题文件夹
+3. 重启 Typora 并选择 DeepWhite 主题
 
-1. 打开 Typora，点击菜单 `文件` → `偏好设置` → `外观` → `打开主题文件夹`
-2. 将 `deepwhite.css` 文件复制到主题文件夹
-3. 重启 Typora
-4. 在菜单 `主题` 中选择 `Deepwhite`
+详细安装说明请参考：[INSTALL.md](INSTALL.md)
 
-### 方法二：直接访问主题文件夹
+## 目录结构
 
-**Windows:**
 ```
-C:\Users\{用户名}\AppData\Roaming\Typora\themes\
-```
-
-**macOS:**
-```
-~/Library/Application Support/abnerworks.Typora/themes/
-```
-
-**Linux:**
-```
-~/.config/Typora/themes/
-```
-
-## 设计理念
-
-DeepWhite 主题遵循以下设计原则：
-
-1. **极简主义**：去除不必要的装饰，专注内容本身
-2. **阅读体验**：优化的排版参数，长时间阅读不疲劳
-3. **系统原生**：使用系统原生字体，保证最佳渲染效果
-4. **细节打磨**：精心调整的间距、颜色和过渡效果
-
-## 主要样式特点
-
-### 标题
-- H1：居中显示，适合文档标题
-- H2-H4：带下划线装饰，清晰的层级结构
-- H4：大写字母，适合章节标题
-
-### 代码
-- 行内代码：浅灰背景，圆角边框
-- 代码块：带阴影的卡片样式，优化的滚动条
-
-### 引用
-- 渐变背景，左侧边框强调
-- 适度的内边距，舒适的阅读体验
-
-### 表格
-- 简洁的边框样式
-- 表头背景色区分
-- 悬停高亮行
-
-## 自定义
-
-如果你想自定义主题，可以修改 CSS 文件开头的变量：
-
-```css
-:root {
-  /* 基础色 */
-  --bg-color: #ffffff;
-  --text-color: #333333;
-  --text-strong: #000000;
-  
-  /* 排版 */
-  --content-max-width: 860px;
-  --line-height-base: 1.75;
-  
-  /* 更多变量... */
-}
+deepwhite-theme/
+├── deepwhite.css          # 主题文件
+├── reference/             # 参考文档
+│   ├── 如何编写主题.md
+│   ├── 标题自动编号.md
+│   └── 字体大小.md
+├── examples/              # 示例文件
+│   ├── preview.md
+│   └── 骨架.html
+├── legacy/                # 旧版本文件
+│   ├── auto-numbering.css
+│   └── github.css
+├── test/                  # 测试文件
+├── README.md              # 项目说明
+├── INSTALL.md             # 安装指南
+├── CHANGELOG.md           # 更新日志
+├── DESIGN_NOTES.md        # 设计说明
+└── LICENSE                # 许可证
 ```
 
-## 兼容性
+## 预览
 
-- Typora 版本：1.0.0+
-- 操作系统：Windows / macOS / Linux
-- 支持所有 Markdown 语法
-- 支持数学公式（MathJax）
-- 支持图表（Mermaid）
+查看 [examples/preview.md](examples/preview.md) 了解主题效果
 
-## 反馈与建议
+## 更新日志
 
-如果你在使用过程中遇到问题或有改进建议，欢迎反馈。
+查看 [CHANGELOG.md](CHANGELOG.md) 了解版本更新
 
 ## 许可证
 
-本主题基于 DeepWhite 博客设计系统创建，仅供个人学习和使用。
-
----
-
-**享受写作！** ✍️
+MIT License - 查看 [LICENSE](LICENSE) 文件
