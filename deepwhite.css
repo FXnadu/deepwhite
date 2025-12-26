@@ -1,0 +1,820 @@
+/*!
+ * DeepWhite Theme for Typora
+ * 基于 DeepWhite 博客设计系统
+ * 极简、优雅、专注阅读
+ * 
+ * 完全复刻网站样式，确保视觉一致性
+ */
+
+/* =========================
+   0. 主题变量（与网站完全一致）
+   ========================= */
+:root {
+  /* 基础色（来自 style.css） */
+  --color-background: #ffffff;
+  --color-text: #333333;
+  --color-text-strong: #000000;
+  --color-text-subtle: #555555;
+  --color-meta: #888888;
+  --color-border: #eeeeee;
+  --color-link-underline: #bbbbbb;
+  --color-code-bg: #f7f7f7;
+  
+  /* 排版（来自 style.css） */
+  --font-family-sans-latin: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --font-family-sans-cjk: "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC", "Noto Sans CJK SC", "HarmonyOS Sans SC", "Microsoft YaHei", "WenQuanYi Micro Hei", "WenQuanYi Zen Hei", sans-serif;
+  --font-family-sans: var(--font-family-sans-latin), var(--font-family-sans-cjk);
+  --font-family-mono: "SF Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  
+  /* 行高与字间距 */
+  --line-height-latin: 1.7;
+  --line-height-zh: 1.65;
+  --letter-spacing-latin: 0.015em;
+  --letter-spacing-zh: 0.01em;
+  
+  /* 版心与间距 */
+  --measure-reading: 68ch;
+  --container-width: 760px;
+  --content-padding: 40px;
+}
+
+/* Windows 系统字体优化（与网站一致） */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  :root {
+    --font-family-sans-latin: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-family-sans-cjk: "Noto Sans SC", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", "HarmonyOS Sans SC", "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei", "WenQuanYi Zen Hei", sans-serif;
+    --font-family-sans: var(--font-family-sans-latin), var(--font-family-sans-cjk);
+    --font-family-mono: "JetBrains Mono", "Consolas", "Courier New", monospace;
+    --line-height-latin: 1.65;
+    --line-height-zh: 1.6;
+    --letter-spacing-latin: 0.01em;
+    --letter-spacing-zh: 0.005em;
+  }
+}
+
+/* =========================
+   1. 全局字号与选区
+   ========================= */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+}
+
+::selection {
+  background: rgba(79, 70, 229, 0.18);
+}
+
+/* =========================
+   2. 写作区容器 (#write)
+   ========================= */
+#write {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--content-padding) 20px;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-family-sans);
+  font-size: 18px;
+  line-height: var(--line-height-zh);
+  letter-spacing: var(--letter-spacing-latin);
+  word-break: break-word;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+  font-feature-settings: "kern" 1, "liga" 1;
+  text-wrap: pretty;
+  hanging-punctuation: allow-end;
+}
+
+/* 中文优化 */
+#write:lang(zh),
+#write:lang(zh-CN),
+#write:lang(zh-Hans) {
+  line-height: var(--line-height-zh);
+  letter-spacing: var(--letter-spacing-zh);
+  font-family: var(--font-family-sans-cjk);
+}
+
+/* 英文优化 */
+#write:lang(en),
+#write:lang(en-US),
+#write:lang(en-GB) {
+  line-height: var(--line-height-latin);
+  letter-spacing: var(--letter-spacing-latin);
+  font-family: var(--font-family-sans-latin);
+}
+
+/* 窗口背景 */
+body {
+  background: var(--color-background);
+  font-family: var(--font-family-sans);
+  color: var(--color-text);
+  line-height: var(--line-height-latin);
+  letter-spacing: var(--letter-spacing-latin);
+}
+
+content {
+  background: var(--color-background);
+}
+
+/* =========================
+   3. 基础元素
+   ========================= */
+#write p {
+  margin: 1.2em 0;
+}
+
+#write a {
+  color: var(--color-text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-link-underline);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+#write a:hover {
+  color: var(--color-text-strong);
+  border-bottom-color: var(--color-text-strong);
+}
+
+#write strong {
+  font-weight: 650;
+  color: var(--color-text-strong);
+}
+
+#write em {
+  font-style: italic;
+}
+
+#write del {
+  opacity: 0.8;
+  text-decoration: line-through;
+}
+
+#write mark {
+  background-color: #fff1b8;
+  padding: 0 0.2em;
+  border-radius: 0.2em;
+  color: inherit;
+}
+
+#write hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 3em auto;
+  width: 80%;
+}
+
+/* =========================
+   4. 标题
+   ========================= */
+#write h1,
+#write h2,
+#write h3,
+#write h4,
+#write h5,
+#write h6 {
+  margin: 2.4em 0 1.1em;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-strong);
+  letter-spacing: 0.02em;
+  border: none;
+  padding-bottom: 0.4em;
+}
+
+#write h1:first-child,
+#write h2:first-child,
+#write h3:first-child,
+#write h4:first-child,
+#write h5:first-child,
+#write h6:first-child {
+  margin-top: 0;
+}
+
+#write h1 {
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+#write h2 {
+  font-size: 1.55em;
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.14em;
+  text-underline-offset: 0.5em;
+  text-decoration-color: var(--color-border);
+  text-decoration-skip-ink: auto;
+}
+
+#write h3 {
+  font-size: 1.3em;
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.14em;
+  text-underline-offset: 0.5em;
+  text-decoration-color: var(--color-border);
+  text-decoration-skip-ink: auto;
+}
+
+#write h4 {
+  font-size: 1.1em;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-subtle);
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.14em;
+  text-underline-offset: 0.5em;
+  text-decoration-color: var(--color-border);
+  text-decoration-skip-ink: auto;
+}
+
+#write h5 {
+  font-size: 1.0rem;
+  font-weight: 600;
+}
+
+#write h6 {
+  font-size: 0.9rem;
+  color: var(--color-meta);
+  font-weight: 600;
+}
+
+/* =========================
+   5. 引用
+   ========================= */
+#write blockquote {
+  margin: 2.4em auto;
+  padding: 1.2em 1.5em;
+  color: var(--color-text-subtle);
+  border-left: 4px solid var(--color-border);
+  background: linear-gradient(135deg, rgba(0,0,0,0.02), rgba(0,0,0,0.04));
+  border-radius: 8px;
+}
+
+#write blockquote p {
+  margin: 0.6em 0;
+}
+
+#write blockquote p:first-child {
+  margin-top: 0;
+}
+
+#write blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================
+   6. 列表
+   ========================= */
+#write ul,
+#write ol {
+  margin: 1.2em 0;
+  padding-left: 1.5em;
+}
+
+#write li {
+  margin: 0.25rem 0;
+}
+
+#write li > p {
+  margin: 0.25rem 0;
+}
+
+/* 任务列表 */
+#write .md-task-list-item {
+  list-style: none;
+  padding-left: 0;
+}
+
+#write .md-task-list-item > input {
+  margin-right: 0.5rem;
+  transform: translateY(1px);
+  cursor: pointer;
+  accent-color: var(--color-text-strong);
+}
+
+#write .md-task-list-item > input:before {
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+}
+
+/* =========================
+   7. 代码
+   ========================= */
+/* 行内代码 */
+#write code {
+  font-family: var(--font-family-mono);
+  font-size: 0.95em;
+  background-color: rgba(17, 17, 17, 0.06);
+  padding: 0.1em 0.35em;
+  border-radius: 0.35em;
+  color: var(--color-text);
+}
+
+/* 代码块 */
+#write pre.md-fences {
+  margin: 2.2em auto;
+  padding: 1.2em 1.4em;
+  background-color: var(--color-code-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  overflow-x: auto;
+  font-family: var(--font-family-mono);
+  font-size: 0.9em;
+  line-height: 1.7;
+  tab-size: 2;
+  box-shadow: 0 18px 40px rgba(15, 15, 15, 0.05);
+  position: relative;
+}
+
+#write pre.md-fences code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* 代码块语言标签 */
+#write .CodeMirror-code .cm-tag {
+  color: var(--text-meta);
+}
+
+/* 代码块滚动条 */
+#write pre.md-fences::-webkit-scrollbar {
+  height: 8px;
+}
+
+#write pre.md-fences::-webkit-scrollbar-thumb {
+  background-color: rgba(17, 17, 17, 0.2);
+  border-radius: 10px;
+}
+
+/* =========================
+   8. 表格
+   ========================= */
+#write table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2.4em 0;
+  font-size: 0.95em;
+}
+
+#write th,
+#write td {
+  border: 1px solid var(--color-border);
+  padding: 0.8em 1em;
+  text-align: left;
+  vertical-align: top;
+}
+
+#write th {
+  background-color: rgba(0, 0, 0, 0.02);
+  font-weight: 600;
+  color: var(--color-text-strong);
+}
+
+#write thead th {
+  background-color: rgba(0, 0, 0, 0.02);
+  font-weight: 600;
+}
+
+/* =========================
+   9. 图片
+   ========================= */
+#write img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 3em auto;
+  border-radius: 4px;
+}
+
+#write figure {
+  margin: 3em auto;
+  max-width: 640px;
+}
+
+#write figcaption {
+  font-size: 14px;
+  color: var(--color-meta);
+  text-align: center;
+  margin-top: 0.8em;
+}
+
+/* =========================
+   10. 数学公式
+   ========================= */
+#write .md-math-block {
+  margin: 2em 0;
+  overflow-x: auto;
+}
+
+#write .MathJax_Display {
+  margin: 2em 0;
+}
+
+/* =========================
+   11. 脚注
+   ========================= */
+/* 脚注引用（上标数字） */
+#write .footnote-ref,
+#write sup.md-footnote {
+  font-size: 0.85em;
+  vertical-align: super;
+  line-height: 0;
+}
+
+#write .footnote-ref a,
+#write sup.md-footnote a {
+  color: var(--color-text-subtle);
+  border-bottom: none;
+  text-decoration: none;
+  padding: 0 2px;
+  border-radius: 2px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+#write .footnote-ref a:hover,
+#write sup.md-footnote a:hover {
+  color: var(--color-text-strong);
+  background-color: var(--color-code-bg);
+}
+
+/* 脚注分隔线 */
+#write .footnotes-sep,
+#write .md-footnote-sep {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 3em 0 2em;
+}
+
+/* 脚注区域 */
+#write .footnotes,
+#write .md-footnotes {
+  margin-top: 3em;
+  padding-top: 2em;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.9em;
+  color: var(--color-text-subtle);
+}
+
+/* 脚注列表 */
+#write .footnotes-list,
+#write .md-footnotes ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: footnote-counter;
+}
+
+/* 脚注项 */
+#write .footnote-item,
+#write .md-footnotes li {
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+  position: relative;
+}
+
+#write .footnote-item::before,
+#write .md-footnotes li::before {
+  content: counter(footnote-counter);
+  counter-increment: footnote-counter;
+  position: absolute;
+  left: 0;
+  color: var(--color-text-subtle);
+  font-weight: 600;
+}
+
+/* 脚注返回链接 */
+#write .footnote-backref,
+#write .md-footnote-backref {
+  color: var(--color-text-subtle);
+  border-bottom: none;
+  text-decoration: none;
+  margin-left: 0.5em;
+  font-size: 1.2em;
+  line-height: 0;
+  vertical-align: baseline;
+  transition: color 0.2s ease;
+}
+
+#write .footnote-backref:hover,
+#write .md-footnote-backref:hover {
+  color: var(--color-text-strong);
+}
+
+/* Typora 特有的脚注样式 */
+#write .md-footnotes {
+  font-size: 0.9em;
+}
+
+#write .md-footnotes p {
+  margin: 0.5em 0;
+}
+
+#write .md-footnotes p:first-child {
+  margin-top: 0;
+}
+
+#write .md-footnotes p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================
+   12. 键盘按键
+   ========================= */
+#write kbd {
+  font-family: var(--font-family-mono);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  background-color: rgba(0, 0, 0, 0.04);
+  font-size: 0.85em;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* =========================
+   13. 定义列表
+   ========================= */
+#write dl {
+  margin: 1.5em 0;
+}
+
+#write dt {
+  font-weight: 600;
+  color: var(--color-text-strong);
+  margin-top: 1em;
+  margin-bottom: 0.3em;
+}
+
+#write dt:first-child {
+  margin-top: 0;
+}
+
+#write dd {
+  margin-left: 1.5em;
+  margin-bottom: 0.5em;
+  color: var(--color-text);
+}
+
+/* =========================
+   14. 缩写
+   ========================= */
+#write abbr {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 0.2em;
+  cursor: help;
+  border-bottom: none;
+}
+
+/* =========================
+   15. Details/Summary 折叠
+   ========================= */
+#write details {
+  margin: 1.5em 0;
+  padding: 1em;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background-color: var(--color-code-bg);
+}
+
+#write details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-text-strong);
+  padding: 0.5em 0;
+  user-select: none;
+  list-style: none;
+  position: relative;
+  padding-left: 1.5em;
+}
+
+#write details summary::-webkit-details-marker {
+  display: none;
+}
+
+#write details summary::before {
+  content: "▶";
+  position: absolute;
+  left: 0;
+  font-size: 0.8em;
+  transition: transform 0.2s ease;
+  color: var(--color-text-subtle);
+}
+
+#write details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+#write details[open] summary {
+  margin-bottom: 0.5em;
+}
+
+/* =========================
+   16. Typora 元字符显示
+   ========================= */
+#write .md-meta {
+  color: var(--text-meta);
+  opacity: 0.7;
+}
+
+/* =========================
+   17. 源码模式 & 代码高亮（与网站完全一致）
+   ========================= */
+.cm-s-typora-default,
+.cm-s-inner {
+  font-family: var(--font-family-mono);
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+.cm-s-typora-default .cm-header {
+  color: var(--color-text-strong);
+  font-weight: 600;
+}
+
+.cm-s-typora-default .cm-link {
+  color: var(--color-text);
+  text-decoration: underline;
+}
+
+.cm-s-typora-default .cm-comment {
+  color: var(--color-meta);
+}
+
+.cm-s-typora-default .cm-string {
+  color: #4caf8c;
+}
+
+.cm-s-typora-default .cm-keyword {
+  color: #2876d9;
+}
+
+/* Prism.js 代码高亮（与网站完全一致） */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #2d2d2d;
+  background: var(--color-code-bg);
+  text-shadow: none;
+  font-family: var(--font-family-mono);
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #8a93a6;
+}
+
+.token.punctuation {
+  color: #5c5f66;
+}
+
+.token.namespace {
+  opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #d15757;
+}
+
+.token.boolean,
+.token.number {
+  color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #4caf8c;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #bc7bff;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #2876d9;
+}
+
+.token.function,
+.token.class-name {
+  color: #d9901a;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #f06292;
+}
+
+.token.bold {
+  font-weight: 600;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+/* =========================
+   18. 侧边栏
+   ========================= */
+.sidebar-content {
+  background-color: #fafafa;
+  font-family: var(--font-sans);
+}
+
+.file-tree-node {
+  color: var(--text-color);
+}
+
+.file-tree-node.active {
+  background-color: var(--selection-bg);
+  color: var(--text-strong);
+}
+
+/* =========================
+   19. 打印 / 导出 PDF
+   ========================= */
+@media print {
+  #write {
+    max-width: none;
+    padding: 0;
+  }
+  
+  #write h1,
+  #write h2,
+  #write h3,
+  #write h4,
+  #write h5,
+  #write h6 {
+    page-break-after: avoid;
+  }
+  
+  #write pre,
+  #write blockquote,
+  #write table {
+    page-break-inside: avoid;
+  }
+  
+  #write img {
+    page-break-inside: avoid;
+  }
+  
+  /* 打印时保留背景色 */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* =========================
+   20. 响应式设计
+   ========================= */
+@media (max-width: 900px) {
+  #write {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  html {
+    font-size: 15px;
+  }
+  
+  #write {
+    padding: 20px 15px;
+    font-size: 17px;
+  }
+  
+  #write h1 {
+    font-size: 30px;
+  }
+  
+  #write h2 {
+    font-size: 1.4em;
+  }
+  
+  #write h3 {
+    font-size: 1.2em;
+  }
+}
