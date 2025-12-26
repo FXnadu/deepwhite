@@ -422,7 +422,7 @@ content {
 #write sup.md-footnote {
   font-size: 0.85em;
   vertical-align: super;
-  line-height: 0;
+  line-height: 1;
 }
 
 #write .footnote-ref a,
@@ -462,28 +462,16 @@ content {
 /* 脚注列表 */
 #write .footnotes-list,
 #write .md-footnotes ol {
-  list-style: none;
-  padding: 0;
+  list-style: decimal;
+  list-style-position: outside;
+  padding-left: 1.25em;
   margin: 0;
-  counter-reset: footnote-counter;
 }
 
 /* 脚注项 */
 #write .footnote-item,
 #write .md-footnotes li {
   margin-bottom: 1em;
-  padding-left: 1.5em;
-  position: relative;
-}
-
-#write .footnote-item::before,
-#write .md-footnotes li::before {
-  content: counter(footnote-counter);
-  counter-increment: footnote-counter;
-  position: absolute;
-  left: 0;
-  color: var(--color-text-subtle);
-  font-weight: 600;
 }
 
 /* 脚注返回链接 */
@@ -494,7 +482,7 @@ content {
   text-decoration: none;
   margin-left: 0.5em;
   font-size: 1.2em;
-  line-height: 0;
+  line-height: 1;
   vertical-align: baseline;
   transition: color 0.2s ease;
 }
