@@ -50,7 +50,7 @@
    ========================= */
 :root {
   /* 基础色（来自 style.css） */
-  --color-background: #fefcf8;
+  --color-background: #fafbfc;
   --color-text: #333333;
   --color-text-strong: #000000;
   --color-text-subtle: #555555;
@@ -60,7 +60,7 @@
   --color-code-bg: #f7f7f7;
 
   /* Typora 侧边栏变量 */
-  --side-bar-bg-color: #fefcf8;
+  --side-bar-bg-color: #fafbfc;
   --active-file-bg-color: rgba(0, 0, 0, 0.08);
   --active-file-text-color: #000000;
   --active-file-border-color: transparent;
@@ -89,6 +89,36 @@
   
   /* 字体大小（参考 ladder.css） */
   --base-font-size: 1.125rem; /* 18px，更适合长时间阅读 */
+  
+  /* Tailwind 主色调（用于脚注链接等） */
+  --tw-primary: #62bbf3;
+  
+  /* 代码块字体大小 */
+  --code-blocks-font-size: 0.9em;
+  --inline-code-font-size: 0.9em;
+  
+  /* Slate 灰度色阶（来自 ladder.css，用于脚注气泡等） */
+  --theme-0: #fff;
+  --theme-50: #f8fafc;
+  --theme-100: #f1f5f9;
+  --theme-200: #e2e8f0;
+  --theme-300: #cbd5e1;
+  --theme-400: #94a3b8;
+  --theme-500: #64748b;
+  --theme-600: #475569;
+  --theme-700: #334155;
+  --theme-800: #1e293b;
+  --theme-900: #0f172a;
+  
+  /* 脚注气泡相关变量 */
+  --tw-prose-pre-code: var(--theme-700);  /* 气泡内文字颜色 - 改为深色 */
+  --tw-prose-pre-bg: var(--theme-800);    /* 气泡背景色 */
+  --tw-prose-body: var(--theme-700);
+  --tw-prose-code: var(--theme-900);
+  --tw-highlight-color: #fde047;
+  --footnote: var(--tw-prose-body);
+  --footnote-bg: #94a3b855;
+  --md-char-color: var(--theme-400);
 }
 
 /* Windows 系统字体优化（与网站一致） */
@@ -190,7 +220,7 @@ html {
 }
 
 body {
-  background: var(--color-background);
+  background: #fafbfc;
   font-family: "LXGW WenKai", var(--font-family-sans-cjk);
   color: var(--color-text);
   line-height: var(--line-height-zh);
@@ -285,8 +315,9 @@ content {
 }
 
 #write strong {
-  font-weight: 650;
+  font-weight: 700;
   color: var(--color-text-strong);
+  -webkit-text-stroke: 0.2px currentColor;
 }
 
 #write em {
@@ -1075,7 +1106,7 @@ pre[class*="language-"] {
 /* 侧边栏标签 */
 .sidebar-tab {
   background: var(--side-bar-bg-color);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: none;
 }
 
 .sidebar-tab-content {
@@ -1244,4 +1275,95 @@ pre[class*="language-"] {
   #write h3 {
     font-size: 1.2em;
   }
+}
+
+/* =========================
+   22. Typora UI 组件
+   ========================= */
+
+/* =========================
+   23. 脚注样式（完整复刻 ladder.css）
+   ========================= */
+
+/* 脚注上标样式 */
+sup.md-footnote {
+  color: var(--footnote);
+  background-color: var(--footnote-bg);
+}
+
+/* 脚注定义区域 */
+.footnotes {
+  font-size: 0.85em;
+}
+
+/* 脚注气泡内的链接 */
+.md-reverse-footnote-area a {
+  font-family: "LXGW WenKai";
+  text-decoration: none;
+  color: var(--tw-primary);
+  border-radius: 3px;
+}
+
+/* 脚注悬浮提示框内容 - 核心样式 */
+.md-hover-tip .code-tooltip-content {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  padding: 0.8em 1.2em;
+  max-width: 600px;
+}
+
+.md-reverse-footnote-area a:hover {
+  background-color: var(--item-hover-bg-color);
+}
+
+/* 脚注定义名称前缀 */
+.md-def-name:before {
+  color: var(--md-char-color);
+}
+
+/* 行内数学公式 */
+.md-inline-math script {
+  color: var(--tw-prose-code);
+}
+
+/* code-tooltip 基础样式 - 影响脚注气泡 */
+.code-tooltip {
+  color: var(--tw-prose-pre-code);
+}
+
+.code-tooltip .md-mathjax-preview {
+  color: var(--tw-prose-body);
+}
+
+/* md-fences 全局样式（来自 ladder.css）- 脚注气泡继承此样式 */
+.md-fences {
+  color: var(--tw-prose-pre-code);
+  background-color: var(--tw-prose-pre-bg);
+  font-weight: 400;
+  font-size: var(--code-blocks-font-size);
+  line-height: 1.7777778;
+  border-radius: 0.5rem;
+  padding: 1.1111111em 1.3333333em;
+}
+
+.md-fences.md-focus {
+  border-bottom-right-radius: 0;
+}
+
+.md-fences > .code-tooltip {
+  height: 1.8rem;
+  bottom: -1.8rem;
+  font-size: 0.9rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.code-tooltip .ty-input {
+  min-width: 10rem;
+}
+
+/* 高亮样式 */
+mark {
+  border-radius: 3px;
+  padding: 0 2px;
+  background-color: var(--tw-highlight-color);
 }
