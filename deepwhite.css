@@ -11,30 +11,42 @@
  */
 
 /* =========================
-   霞鹜文楷字体引入
+   霞鹜文楷字体引入（使用本地字体）
    ========================= */
-@import url('https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css');
-@import url('https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.0.0/style.css');
-
-/* 本地字体备用方案 */
 @font-face {
-  font-family: 'LXGW WenKai';
-  src: local('LXGW WenKai'), local('霞鹜文楷'), local('LXGWWenKai-Regular');
-  font-weight: normal;
+  font-family: "LXGW WenKai";
+  font-display: block;
+  src: url("deepwhite-fonts/LXGWWenKai-Light.ttf") format("truetype");
+  font-weight: 300;
   font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
-  font-family: 'LXGW WenKai';
-  src: local('LXGW WenKai Bold'), local('霞鹜文楷 Bold'), local('LXGWWenKai-Bold');
-  font-weight: bold;
+  font-family: "LXGW WenKai";
+  font-display: block;
+  src: url("deepwhite-fonts/LXGWWenKai-Regular.ttf") format("truetype");
+  font-weight: 400;
   font-style: normal;
-  font-display: swap;
+}
+
+@font-face {
+  font-family: "LXGW WenKai";
+  font-display: block;
+  src: url("deepwhite-fonts/LXGWWenKai-Medium.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "LXGW WenKai";
+  font-display: block;
+  src: url("deepwhite-fonts/LXGWWenKai-Medium.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
 }
 
 /* =========================
-   0. 主题变量（与网站完全一致）
+   0. 主题变量（参考 ladder.css 的字体和间距设置）
    ========================= */
 :root {
   /* 基础色（来自 style.css） */
@@ -46,23 +58,37 @@
   --color-border: #eeeeee;
   --color-link-underline: #bbbbbb;
   --color-code-bg: #f7f7f7;
+
+  /* Typora 侧边栏变量 */
+  --side-bar-bg-color: #fefcf8;
+  --active-file-bg-color: rgba(0, 0, 0, 0.08);
+  --active-file-text-color: #000000;
+  --active-file-border-color: transparent;
+  --item-hover-bg-color: rgba(0, 0, 0, 0.05);
+  --item-hover-text-color: inherit;
   
-  /* 排版（来自 style.css） */
+  /* 字体设置（参考 ladder.css） */
   --font-family-sans-latin: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   --font-family-sans-cjk: "LXGW WenKai", "霞鹜文楷", "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC", "Noto Sans CJK SC", "HarmonyOS Sans SC", "Microsoft YaHei", "WenQuanYi Micro Hei", "WenQuanYi Zen Hei", sans-serif;
   --font-family-sans: var(--font-family-sans-latin), var(--font-family-sans-cjk);
-  --font-family-mono: "SF Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-family-heading: "LXGW WenKai", var(--font-family-sans-cjk);
   
-  /* 行高与字间距 */
-  --line-height-latin: 1.7;
-  --line-height-zh: 1.65;
+  /* 行高与字间距（参考 ladder.css） */
+  --line-height-latin: 1.625;
+  --line-height-zh: 1.625;
   --letter-spacing-latin: 0.015em;
   --letter-spacing-zh: 0.01em;
   
-  /* 版心与间距 */
-  --measure-reading: 68ch;
-  --container-width: 760px;
-  --content-padding: 40px;
+  /* 版心与间距（参考 ladder.css） */
+  --measure-reading: 65ch;        /* 主要阅读区域，约32-33个汉字 */
+  --measure-code: 80ch;           /* 代码块可以稍宽 */
+  --measure-table: 90ch;          /* 表格需要更多空间 */
+  --container-width: 80rem;
+  --content-padding: 100px;
+  
+  /* 字体大小（参考 ladder.css） */
+  --base-font-size: 1.125rem; /* 18px，更适合长时间阅读 */
 }
 
 /* Windows 系统字体优化（与网站一致） */
@@ -71,7 +97,7 @@
     --font-family-sans-latin: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --font-family-sans-cjk: "LXGW WenKai", "霞鹜文楷", "Noto Sans SC", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", "HarmonyOS Sans SC", "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei", "WenQuanYi Zen Hei", sans-serif;
     --font-family-sans: var(--font-family-sans-latin), var(--font-family-sans-cjk);
-    --font-family-mono: "LXGW WenKai Mono", "霞鹜文楷等宽", "JetBrains Mono", "Consolas", "Courier New", monospace;
+    --font-family-mono: "LXGW WenKai", "霞鹜文楷等宽", "JetBrains Mono", "Consolas", "Courier New", monospace;
     --line-height-latin: 1.65;
     --line-height-zh: 1.6;
     --letter-spacing-latin: 0.01em;
@@ -82,6 +108,26 @@
 /* =========================
    1. 全局字号与选区
    ========================= */
+
+/* 全局字体覆盖 - 通过高优先级选择器覆盖 Typora 默认样式 */
+html body,
+html body #write,
+html body #write * {
+  font-family: "LXGW WenKai", var(--font-family-sans-cjk);
+}
+
+/* 代码相关元素保持等宽字体 */
+html body code,
+html body pre,
+html body .md-fences,
+html body .md-fences *,
+html body .CodeMirror,
+html body .CodeMirror *,
+html body .cm-s-inner,
+html body .cm-s-inner * {
+  font-family: var(--font-family-mono);
+}
+
 html {
   font-size: 16px;
   scroll-behavior: smooth;
@@ -93,18 +139,21 @@ html {
 }
 
 /* =========================
-   2. 写作区容器 (#write)
+   2. 写作区容器 (#write) - 参考 ladder.css 的设计
    ========================= */
 #write {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: var(--content-padding) 20px;
+  padding-top: var(--content-padding);
+  padding-bottom: var(--content-padding);
+  padding-left: 20px;
+  padding-right: 20px;
   background: var(--color-background);
   color: var(--color-text);
-  font-family: var(--font-family-sans);
-  font-size: 18px;
+  font-family: "LXGW WenKai", var(--font-family-sans-cjk);
+  font-size: var(--base-font-size);
   line-height: var(--line-height-zh);
-  letter-spacing: var(--letter-spacing-latin);
+  letter-spacing: var(--letter-spacing-zh);
   word-break: break-word;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -113,6 +162,7 @@ html {
   text-wrap: pretty;
   hanging-punctuation: allow-end;
   counter-reset: h2;
+  max-width: var(--measure-reading);
 }
 
 /* 中文优化 */
@@ -121,7 +171,7 @@ html {
 #write:lang(zh-Hans) {
   line-height: var(--line-height-zh);
   letter-spacing: var(--letter-spacing-zh);
-  font-family: var(--font-family-sans-cjk);
+  font-family: "LXGW WenKai", var(--font-family-sans-cjk);
 }
 
 /* 英文优化 */
@@ -130,20 +180,66 @@ html {
 #write:lang(en-GB) {
   line-height: var(--line-height-latin);
   letter-spacing: var(--letter-spacing-latin);
-  font-family: var(--font-family-sans-latin);
+  font-family: "LXGW WenKai", var(--font-family-sans-latin);
 }
 
-/* 窗口背景 */
+/* 窗口背景 - 统一所有区域 */
+html {
+  background: var(--color-background);
+  font-family: "LXGW WenKai", var(--font-family-sans-cjk);
+}
+
 body {
-  background: #fefcf8;
-  font-family: var(--font-family-sans);
+  background: var(--color-background);
+  font-family: "LXGW WenKai", var(--font-family-sans-cjk);
   color: var(--color-text);
-  line-height: var(--line-height-latin);
-  letter-spacing: var(--letter-spacing-latin);
+  line-height: var(--line-height-zh);
+  letter-spacing: var(--letter-spacing-zh);
 }
 
 content {
-  background: #fefcf8;
+  background: var(--color-background);
+  font-family: "LXGW WenKai", var(--font-family-sans-cjk);
+}
+
+/* 侧边栏背景统一 */
+#typora-sidebar {
+  background: var(--color-background);
+  font-family: "LXGW WenKai", var(--font-family-sans-cjk);
+}
+
+.sidebar-content {
+  background: var(--color-background);
+  font-family: "LXGW WenKai", var(--font-family-sans-cjk);
+}
+
+/* 文件列表背景统一 */
+.file-list {
+  background: var(--color-background);
+}
+
+.file-tree {
+  background: var(--color-background);
+}
+
+/* 大纲面板背景统一 */
+.outline-content {
+  background: var(--color-background);
+}
+
+/* 搜索面板背景统一 */
+.search-content {
+  background: var(--color-background);
+}
+
+/* 主窗口容器背景统一 */
+.typora-export {
+  background: var(--color-background);
+}
+
+/* 确保所有面板都使用统一背景 */
+.sidebar-tab-content {
+  background: var(--color-background);
 }
 
 /* =========================
@@ -151,6 +247,7 @@ content {
    ========================= */
 #write p {
   margin: 1.2em 0;
+  font-family: "LXGW WenKai", var(--font-family-sans-cjk);
 }
 
 #write a {
@@ -248,10 +345,10 @@ h5 {
 #write h5,
 #write h6 {
   margin: 2.4em 0 1.1em;
+  font-family: var(--font-family-heading);
   font-weight: 600;
   line-height: 1.3;
   color: var(--color-text-strong);
-  letter-spacing: 0.02em;
   border: none;
   padding-bottom: 0.4em;
 }
@@ -291,22 +388,6 @@ h6.md-focus.md-heading:before {
   color: var(--color-text-subtle);
 }
 
-#write h5:before,
-h5.md-focus.md-heading:before {
-  counter-increment: h5;
-  content: counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". ";
-  color: var(--color-text-subtle);
-  margin-right: 0.5em;
-}
-
-#write h6:before,
-h6.md-focus.md-heading:before {
-  counter-increment: h6;
-  content: counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". ";
-  color: var(--color-text-subtle);
-  margin-right: 0.5em;
-}
-
 /* 覆盖聚焦标题的默认样式 */
 #write>h3.md-focus:before,
 #write>h4.md-focus:before,
@@ -341,18 +422,24 @@ h6.md-focus:before {
 }
 
 #write h1 {
-  font-size: 40px;
-  font-weight: 600;
+  font-size: 2.5em;
+  font-weight: 800;
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem;
   margin-top: 0;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 #write h2 {
-  font-size: 1.55em;
-  padding-bottom: 0.64em;
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 1.5em;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  padding-bottom: 0.5em;
   display: block;
-  margin-bottom: 1.1em;
   text-decoration: underline;
   text-decoration-color: var(--color-border);
   text-decoration-thickness: 0.14em;
@@ -360,10 +447,14 @@ h6.md-focus:before {
 }
 
 #write h3 {
-  font-size: 1.3em;
-  padding-bottom: 0.64em;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 1.6em;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  padding-bottom: 0.5em;
   display: block;
-  margin-bottom: 1.1em;
   text-decoration: underline;
   text-decoration-color: var(--color-border);
   text-decoration-thickness: 0.14em;
@@ -371,13 +462,16 @@ h6.md-focus:before {
 }
 
 #write h4 {
-  font-size: 1.1em;
+  font-size: 1.25em;
+  font-weight: 600;
+  margin-top: 1.8em;
+  margin-bottom: 1rem;
+  line-height: 1.4;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   color: var(--color-text-subtle);
-  padding-bottom: 0.64em;
+  padding-bottom: 0.5em;
   display: block;
-  margin-bottom: 1.1em;
   text-decoration: underline;
   text-decoration-color: var(--color-border);
   text-decoration-thickness: 0.14em;
@@ -385,14 +479,22 @@ h6.md-focus:before {
 }
 
 #write h5 {
-  font-size: 1.0rem;
-  font-weight: 600;
+  font-size: 1.125em;
+  line-height: 1.4;
+  margin-top: 1.6em;
+  margin-bottom: 0.8rem;
+  font-weight: bold;
 }
 
 #write h6 {
-  font-size: 0.9rem;
-  color: var(--color-meta);
+  font-size: 1em;
+  line-height: 1.4;
+  margin-top: 1.6em;
+  margin-bottom: 0.8rem;
+  color: var(--color-text-subtle);
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* =========================
@@ -571,37 +673,34 @@ h6.md-focus:before {
 #write code {
   font-family: var(--font-family-mono);
   font-size: 0.95em;
-  background-color: rgba(17, 17, 17, 0.06);
-  padding: 0.1em 0.35em;
+  background-color: rgba(0, 0, 0, 0.06);
+  padding: 0.15em 0.4em;
   border-radius: 0.35em;
   color: var(--color-text);
 }
 
 /* 代码块 */
 #write pre.md-fences {
-  margin: 2.2em auto;
-  padding: 1.2em 1.4em;
-  background-color: var(--color-code-bg);
+  margin: 2.4em auto;
+  padding: 1.5em 1.6em;
+  background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f4 100%);
   border: 1px solid var(--color-border);
-  border-radius: 10px;
+  border-radius: 12px;
   overflow-x: auto;
   font-family: var(--font-family-mono);
   font-size: 0.9em;
   line-height: 1.7;
   tab-size: 2;
-  box-shadow: 0 18px 40px rgba(15, 15, 15, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.08);
   position: relative;
+  max-width: var(--measure-code);
 }
 
 #write pre.md-fences code {
   background: none;
   padding: 0;
   border-radius: 0;
-}
-
-/* 代码块语言标签 */
-#write .CodeMirror-code .cm-tag {
-  color: var(--text-meta);
+  border: none;
 }
 
 /* 代码块滚动条 */
@@ -609,36 +708,79 @@ h6.md-focus:before {
   height: 8px;
 }
 
+#write pre.md-fences::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
 #write pre.md-fences::-webkit-scrollbar-thumb {
-  background-color: rgba(17, 17, 17, 0.2);
-  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+#write pre.md-fences::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Front Matter (YAML 元数据块) */
+#write pre.md-meta-block {
+  padding: 1.2em 1.5em;
+  margin: 0 0 2.4em 0;
+  background-color: rgba(0, 0, 0, 0.02);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-family: var(--font-family-mono);
+  font-size: 0.85em;
+  line-height: 1.6;
+  color: var(--color-text-subtle);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  position: relative;
+}
+
+/* Front Matter 标识 */
+#write pre.md-meta-block::before {
+  content: "YAML";
+  position: absolute;
+  top: -0.5em;
+  left: 1em;
+  background: var(--color-background);
+  color: var(--color-meta);
+  font-size: 0.75em;
+  font-weight: 600;
+  padding: 0.2em 0.5em;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 /* =========================
    8. 表格
    ========================= */
-#write table {
+/* 只对写作区域内的表格应用样式，排除弹窗中的表格 */
+#write table:not(.md-grid-board) {
   width: 100%;
   border-collapse: collapse;
-  margin: 2.4em 0;
+  margin: 0.3em 0;
   font-size: 0.95em;
+  max-width: var(--measure-table);
 }
 
-#write th,
-#write td {
+#write th:not(.md-grid-board th),
+#write td:not(.md-grid-board td) {
   border: 1px solid var(--color-border);
   padding: 0.8em 1em;
   text-align: left;
   vertical-align: top;
 }
 
-#write th {
+#write th:not(.md-grid-board th) {
   background-color: rgba(0, 0, 0, 0.02);
   font-weight: 600;
   color: var(--color-text-strong);
 }
 
-#write thead th {
+#write thead th:not(.md-grid-board thead th) {
   background-color: rgba(0, 0, 0, 0.02);
   font-weight: 600;
 }
@@ -885,20 +1027,59 @@ pre[class*="language-"] {
 }
 
 /* =========================
-   18. 侧边栏
+   18. 侧边栏与文件列表
    ========================= */
+/* 侧边栏整体样式 */
+#typora-sidebar {
+  background: var(--side-bar-bg-color);
+  border-right: 1px solid var(--color-border);
+}
+
 .sidebar-content {
-  background-color: #fafafa;
-  font-family: var(--font-sans);
+  background: var(--side-bar-bg-color);
+  font-family: var(--font-family-sans);
+  color: var(--color-text);
 }
 
-.file-tree-node {
-  color: var(--text-color);
+/* 大纲面板 */
+.outline-content {
+  background: var(--side-bar-bg-color);
+  font-family: var(--font-family-sans);
 }
 
-.file-tree-node.active {
-  background-color: var(--selection-bg);
-  color: var(--text-strong);
+.outline-item {
+  color: var(--color-text);
+}
+
+.outline-item:hover {
+  background: var(--item-hover-bg-color);
+}
+
+/* 文件项悬浮效果 - 只针对单个文件 */
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state {
+  visibility: visible;
+}
+
+/* 只有悬浮的单个文件标题突出显示 */
+.file-node-content:hover {
+  color: var(--color-text-strong);
+  transition: color 0.2s ease;
+}
+
+/* 搜索面板 */
+.search-content {
+  background: var(--side-bar-bg-color);
+}
+
+/* 侧边栏标签 */
+.sidebar-tab {
+  background: var(--side-bar-bg-color);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sidebar-tab-content {
+  background: var(--side-bar-bg-color);
 }
 
 /* =========================
