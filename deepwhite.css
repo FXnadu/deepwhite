@@ -20,10 +20,12 @@
 }
 
 @font-face {
-  font-family: "LXGWWenKai-Blod";
+  font-family: "LXGWWenKai-Medium";
   font-display: block;
   src: url("deepwhite-fonts/LXGWWenKai-Medium.ttf") format("truetype");
 }
+
+
 
 /* =========================
    2. CSS 变量
@@ -169,7 +171,7 @@
   --color-code-bg: #f7f7f7;
   --font-family-sans-cjk: "LXGWWenKai-Regular", "霞鹜文楷", "PingFang SC", "Hiragino Sans GB", sans-serif;
   --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --font-family-heading: "LXGWWenKai-Blod", var(--font-family-sans-cjk);
+  --font-family-heading: "LXGWWenKai-Medium", var(--font-family-sans-cjk);
   --dw-h1-font-size: 2.5em;
   --dw-h1-line-height: 1.2;
   --dw-h1-letter-spacing: -0.02em;
@@ -240,7 +242,7 @@ h5,
 h6 {
   font-size: inherit;
   font-weight: inherit;
-  font-family: "LXGWWenKai-Blod";
+  font-family: "LXGWWenKai-Medium";
 }
 
 a {
@@ -337,10 +339,6 @@ textarea {
   resize: vertical;
 }
 
-
-/* =========================
-   4. Ladder 基础样式
-   ========================= */
 
 /* 写作区基础 */
 #write {
@@ -727,7 +725,6 @@ p {
 }
 
 
-/* 脚注样式 - 来自 ladder.css，保持不变 */
 sup.md-footnote {
   color: var(--footnote);
   background-color: var(--footnote-bg);
@@ -848,7 +845,7 @@ g[data-mml-node="merror"] > g {
   font-size: var(--code-blocks-font-size);
 }
 
-/* 代码块 - ladder 基础样式 */
+/* 代码块  */
 .md-fences {
   color: var(--tw-prose-pre-code);
   background-color: var(--tw-prose-pre-bg);
@@ -1343,7 +1340,7 @@ h6.md-focus:before {
 }
 
 
-/* 代码块样式 - DeepWhite 浅色渐变背景，文字样式参考 ladder */
+/* 代码块样式 */
 #write pre.md-fences {
   margin: 2.4em auto;
   padding: 1.5em 1.6em;
@@ -1753,7 +1750,7 @@ h6.md-focus:before {
   margin-bottom: 0.5em;
 }
 
-/* Front Matter (YAML 元数据块) - DeepWhite 样式 */
+/* Front Matter (YAML 元数据块)  */
 #write pre.md-meta-block {
   padding: 1.2em 1.5em;
   margin: 0 0 2.4em 0;
@@ -1825,3 +1822,73 @@ h6.md-focus:before {
   color: var(--color-text-strong);
   transition: color 0.2s ease;
 }
+
+/* =========================
+   7. Mermaid 图表样式
+   ========================= */
+
+/* Mermaid 代码块 - 宽图表可突破写作区域 */
+#write .md-fences[lang="mermaid"] {
+  max-width: none;
+  background: transparent !important;
+  border: none !important;
+  padding: 1.5em 0 !important;
+  box-shadow: none !important;
+}
+
+/* Mermaid 图表使用主题字体 */
+#write .md-fences[lang="mermaid"] svg text {
+  font-family: var(--font-family-sans-cjk) !important;
+}
+
+/* 去除 Mermaid SVG 容器的背景色和边框 */
+#write .md-fences[lang="mermaid"] svg {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* 去除 Mermaid 图表的整体背景矩形 */
+#write .md-fences[lang="mermaid"] svg > rect:first-child {
+  fill: transparent !important;
+  stroke: none !important;
+}
+
+/* 去除所有背景层 */
+#write .md-fences[lang="mermaid"] svg g.background rect,
+#write .md-fences[lang="mermaid"] svg g[class*="background"] rect {
+  fill: transparent !important;
+  stroke: none !important;
+}
+
+/* 保持节点和形状的样式 */
+#write .md-fences[lang="mermaid"] svg .node rect,
+#write .md-fences[lang="mermaid"] svg .node circle,
+#write .md-fences[lang="mermaid"] svg .node ellipse,
+#write .md-fences[lang="mermaid"] svg .node polygon,
+#write .md-fences[lang="mermaid"] svg .cluster rect {
+  fill: #ffffff !important;
+  stroke: #d0d0d0 !important;
+  stroke-width: 1.5px !important;
+}
+
+/* 调整文本颜色以适应主题 */
+#write .md-fences[lang="mermaid"] svg .nodeLabel,
+#write .md-fences[lang="mermaid"] svg .edgeLabel,
+#write .md-fences[lang="mermaid"] svg text {
+  fill: var(--color-text) !important;
+  color: var(--color-text) !important;
+}
+
+/* 调整连接线颜色 */
+#write .md-fences[lang="mermaid"] svg .edgePath path,
+#write .md-fences[lang="mermaid"] svg .flowchart-link {
+  stroke: #999999 !important;
+  stroke-width: 1.5px !important;
+}
+
+/* 调整箭头颜色 */
+#write .md-fences[lang="mermaid"] svg marker path {
+  fill: #999999 !important;
+  stroke: #999999 !important;
+}
+
