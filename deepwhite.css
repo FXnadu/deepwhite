@@ -170,6 +170,21 @@
   --font-family-sans-cjk: "LXGWWenKai-Regular", "霞鹜文楷", "PingFang SC", "Hiragino Sans GB", sans-serif;
   --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --font-family-heading: "LXGWWenKai-Blod", var(--font-family-sans-cjk);
+  --dw-h1-font-size: 2.5em;
+  --dw-h1-line-height: 1.2;
+  --dw-h1-letter-spacing: -0.02em;
+  --dw-h2-font-size: 2em;
+  --dw-h2-line-height: 1.3;
+  --dw-h2-letter-spacing: -0.01em;
+  --dw-h3-font-size: 1.5em;
+  --dw-h3-line-height: 1.4;
+  --dw-h3-letter-spacing: -0.01em;
+  --dw-h4-font-size: 1.25em;
+  --dw-h4-line-height: 1.4;
+  --dw-h4-letter-spacing-en: 0.08em;
+  --dw-heading-underline-color: var(--color-border);
+  --dw-heading-underline-thickness: 0.14em;
+  --dw-heading-underline-offset: 0.5em;
 }
 
 .ty-file-search-match-text {
@@ -371,93 +386,123 @@ pre.md-meta-block {
   margin-bottom: 2.8em;
 }
 
-/* 标题 - ladder 基础样式 */
-h1 {
+/* 标题 - 统一样式 */
+#write h1 {
   color: var(--tw-prose-headings);
   font-weight: 800;
-  font-size: 2.5rem;
+  font-size: var(--dw-h1-font-size);
   margin-top: 0;
   margin-bottom: 1.5rem;
-  line-height: 2.75rem;
-  letter-spacing: -1.5px;
+  line-height: var(--dw-h1-line-height);
+  letter-spacing: var(--dw-h1-letter-spacing);
+  text-align: center;
 }
 
-h1 strong {
+#write h1 strong {
   font-weight: 900;
 }
 
-h2 {
+#write h2 {
   color: var(--tw-prose-headings);
   font-weight: bold;
-  font-size: 1.63rem;
-  margin-top: 1.5555556em;
-  margin-bottom: 1.5rem;
-  line-height: 1.875rem;
-  letter-spacing: -1px;
+  font-size: var(--dw-h2-font-size);
+  margin-top: 1.5em;
+  margin-bottom: 1rem;
+  line-height: var(--dw-h2-line-height);
+  letter-spacing: var(--dw-h2-letter-spacing);
+  padding-bottom: 0.5em;
+  display: block;
+  text-decoration: underline;
+  text-decoration-color: var(--dw-heading-underline-color);
+  text-decoration-thickness: var(--dw-heading-underline-thickness);
+  text-underline-offset: var(--dw-heading-underline-offset);
 }
 
-h2 strong {
+#write h2 strong {
   font-weight: 800;
 }
 
-h3 {
+#write h3 {
   color: var(--tw-prose-headings);
   font-weight: bold;
-  font-size: 1.27rem;
+  font-size: var(--dw-h3-font-size);
   margin-top: 1.6em;
-  margin-bottom: 1.5rem;
-  line-height: 1.5rem;
-  letter-spacing: -1px;
+  margin-bottom: 1rem;
+  line-height: var(--dw-h3-line-height);
+  letter-spacing: var(--dw-h3-letter-spacing);
+  padding-bottom: 0.5em;
+  display: block;
+  text-decoration: underline;
+  text-decoration-color: var(--dw-heading-underline-color);
+  text-decoration-thickness: var(--dw-heading-underline-thickness);
+  text-underline-offset: var(--dw-heading-underline-offset);
 }
 
-h3 strong {
+#write h3 strong {
   font-weight: 700;
 }
 
-h4 {
-  color: var(--tw-prose-headings);
-  font-size: 1.12rem;
+#write h4 {
+  color: var(--color-text-subtle);
+  font-size: var(--dw-h4-font-size);
   font-weight: 600;
   margin-top: 1.8em;
-  margin-bottom: 1.5rem;
-  line-height: 1.375rem;
+  margin-bottom: 1rem;
+  line-height: var(--dw-h4-line-height);
+  padding-bottom: 0.5em;
+  display: block;
+  text-decoration: underline;
+  text-decoration-color: var(--dw-heading-underline-color);
+  text-decoration-thickness: var(--dw-heading-underline-thickness);
+  text-underline-offset: var(--dw-heading-underline-offset);
 }
 
-h4 strong {
+#write h4:lang(en) {
+  text-transform: uppercase;
+  letter-spacing: var(--dw-h4-letter-spacing-en);
+}
+
+#write h4 strong {
   font-weight: 700;
 }
 
-h2 code {
+#write h2 code {
   font-size: 0.8611111em;
 }
 
-h3 code {
+#write h3 code {
   font-size: 0.9em;
 }
 
-h2 + * {
+#write h2 + * {
   margin-top: 0;
 }
 
-h3 + * {
+#write h3 + * {
   margin-top: 0;
 }
 
-h4 + * {
+#write h4 + * {
   margin-top: 0;
 }
 
-h5 {
-  font-size: 0.97rem;
-  line-height: 1.25rem;
-  margin-bottom: 1.5rem;
+#write h5 {
+  font-size: 1.125em;
+  line-height: 1.4;
+  margin-top: 1.6em;
+  margin-bottom: 0.8rem;
   font-weight: bold;
 }
 
-h6 {
-  font-size: 0.93rem;
-  line-height: 1rem;
-  margin-bottom: 0.75rem;
+#write h6 {
+  font-size: 1em;
+  line-height: 1.4;
+  margin-top: 1.6em;
+  margin-bottom: 0.8rem;
+  color: var(--color-text-subtle);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* 表格 */
@@ -1169,43 +1214,36 @@ h5 {
   color: var(--color-text-subtle);
 }
 
-#write h3:before,
-h3.md-focus.md-heading:before {
+#write h3:before {
   counter-increment: h3;
   content: counter(h2) "." counter(h3) ". ";
   color: var(--color-text-subtle);
 }
 
-#write h4:before,
-h4.md-focus.md-heading:before {
+#write h4:before {
   counter-increment: h4;
   content: counter(h2) "." counter(h3) "." counter(h4) ". ";
   color: var(--color-text-subtle);
 }
 
-#write h5:before,
-h5.md-focus.md-heading:before {
+#write h5:before {
   counter-increment: h5;
   content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". ";
   color: var(--color-text-subtle);
 }
 
-#write h6:before,
-h6.md-focus.md-heading:before {
+#write h6:before {
   counter-increment: h6;
   content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". ";
   color: var(--color-text-subtle);
 }
 
 /* 覆盖聚焦标题的默认样式 */
-#write>h3.md-focus:before,
-#write>h4.md-focus:before,
-#write>h5.md-focus:before,
-#write>h6.md-focus:before,
-h3.md-focus:before,
-h4.md-focus:before,
-h5.md-focus:before,
-h6.md-focus:before {
+#write h2.md-focus:before,
+#write h3.md-focus:before,
+#write h4.md-focus:before,
+#write h5.md-focus:before,
+#write h6.md-focus:before {
   color: inherit;
   border: inherit;
   border-radius: inherit;
@@ -1219,28 +1257,6 @@ h6.md-focus:before {
   vertical-align: inherit;
   font-weight: inherit;
   line-height: inherit;
-}
-
-/* 标题下划线 */
-#write h2 {
-  text-decoration: underline;
-  text-decoration-color: var(--color-border);
-  text-decoration-thickness: 0.14em;
-  text-underline-offset: 0.5em;
-}
-
-#write h3 {
-  text-decoration: underline;
-  text-decoration-color: var(--color-border);
-  text-decoration-thickness: 0.14em;
-  text-underline-offset: 0.5em;
-}
-
-#write h4 {
-  text-decoration: underline;
-  text-decoration-color: var(--color-border);
-  text-decoration-thickness: 0.14em;
-  text-underline-offset: 0.5em;
 }
 
 /* 任务列表圆形复选框 */
@@ -1801,84 +1817,4 @@ h6.md-focus:before {
 .file-node-content:hover {
   color: var(--color-text-strong);
   transition: color 0.2s ease;
-}
-
-
-/* =========================
-   7. DeepWhite 标题样式覆盖
-   ========================= */
-#write h1 {
-  font-size: 2.5em;
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  margin-top: 0;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-
-#write h2 {
-  font-size: 2em;
-  font-weight: bold;
-  margin-top: 1.5em;
-  margin-bottom: 1rem;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-  padding-bottom: 0.5em;
-  display: block;
-  text-decoration: underline;
-  text-decoration-color: var(--color-border);
-  text-decoration-thickness: 0.14em;
-  text-underline-offset: 0.5em;
-}
-
-#write h3 {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-top: 1.6em;
-  margin-bottom: 1rem;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-  padding-bottom: 0.5em;
-  display: block;
-  text-decoration: underline;
-  text-decoration-color: var(--color-border);
-  text-decoration-thickness: 0.14em;
-  text-underline-offset: 0.5em;
-}
-
-#write h4 {
-  font-size: 1.25em;
-  font-weight: 600;
-  margin-top: 1.8em;
-  margin-bottom: 1rem;
-  line-height: 1.4;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-text-subtle);
-  padding-bottom: 0.5em;
-  display: block;
-  text-decoration: underline;
-  text-decoration-color: var(--color-border);
-  text-decoration-thickness: 0.14em;
-  text-underline-offset: 0.5em;
-}
-
-#write h5 {
-  font-size: 1.125em;
-  line-height: 1.4;
-  margin-top: 1.6em;
-  margin-bottom: 0.8rem;
-  font-weight: bold;
-}
-
-#write h6 {
-  font-size: 1em;
-  line-height: 1.4;
-  margin-top: 1.6em;
-  margin-bottom: 0.8rem;
-  color: var(--color-text-subtle);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
