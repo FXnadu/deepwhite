@@ -20,10 +20,12 @@
 }
 
 @font-face {
-  font-family: "LXGWWenKai-Blod";
+  font-family: "LXGWWenKai-Medium";
   font-display: block;
   src: url("deepwhite-fonts/LXGWWenKai-Medium.ttf") format("truetype");
 }
+
+
 
 /* =========================
    2. CSS 变量
@@ -240,7 +242,7 @@ h5,
 h6 {
   font-size: inherit;
   font-weight: inherit;
-  font-family: "LXGWWenKai-Blod";
+  font-family: "LXGWWenKai-Medium";
 }
 
 a {
@@ -337,10 +339,6 @@ textarea {
   resize: vertical;
 }
 
-
-/* =========================
-   4. Ladder 基础样式
-   ========================= */
 
 /* 写作区基础 */
 #write {
@@ -727,7 +725,6 @@ p {
 }
 
 
-/* 脚注样式 - 来自 ladder.css，保持不变 */
 sup.md-footnote {
   color: var(--footnote);
   background-color: var(--footnote-bg);
@@ -848,7 +845,7 @@ g[data-mml-node="merror"] > g {
   font-size: var(--code-blocks-font-size);
 }
 
-/* 代码块 - ladder 基础样式 */
+/* 代码块  */
 .md-fences {
   color: var(--tw-prose-pre-code);
   background-color: var(--tw-prose-pre-bg);
@@ -1336,7 +1333,7 @@ h5 {
 }
 
 
-/* 代码块样式 - DeepWhite 浅色渐变背景，文字样式参考 ladder */
+/* 代码块样式 */
 #write pre.md-fences {
   margin: 2.4em auto;
   padding: 1.5em 1.6em;
@@ -1746,7 +1743,7 @@ h5 {
   margin-bottom: 0.5em;
 }
 
-/* Front Matter (YAML 元数据块) - DeepWhite 样式 */
+/* Front Matter (YAML 元数据块)  */
 #write pre.md-meta-block {
   padding: 1.2em 1.5em;
   margin: 0 0 2.4em 0;
