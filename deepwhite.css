@@ -171,7 +171,7 @@
   --color-code-bg: #f7f7f7;
   --font-family-sans-cjk: "LXGWWenKai-Regular", "霞鹜文楷", "PingFang SC", "Hiragino Sans GB", sans-serif;
   --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --font-family-heading: "LXGWWenKai-Medium", var(--font-family-sans-cjk);
+  --font-family-heading: "LXGWWenKai-Blod", var(--font-family-sans-cjk);
   --dw-h1-font-size: 2.5em;
   --dw-h1-line-height: 1.2;
   --dw-h1-letter-spacing: -0.02em;
@@ -1211,43 +1211,36 @@ h5 {
   color: var(--color-text-subtle);
 }
 
-#write h3:before,
-h3.md-focus.md-heading:before {
+#write h3:before {
   counter-increment: h3;
   content: counter(h2) "." counter(h3) ". ";
   color: var(--color-text-subtle);
 }
 
-#write h4:before,
-h4.md-focus.md-heading:before {
+#write h4:before {
   counter-increment: h4;
   content: counter(h2) "." counter(h3) "." counter(h4) ". ";
   color: var(--color-text-subtle);
 }
 
-#write h5:before,
-h5.md-focus.md-heading:before {
+#write h5:before {
   counter-increment: h5;
   content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". ";
   color: var(--color-text-subtle);
 }
 
-#write h6:before,
-h6.md-focus.md-heading:before {
+#write h6:before {
   counter-increment: h6;
   content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". ";
   color: var(--color-text-subtle);
 }
 
 /* 覆盖聚焦标题的默认样式 */
-#write>h3.md-focus:before,
-#write>h4.md-focus:before,
-#write>h5.md-focus:before,
-#write>h6.md-focus:before,
-h3.md-focus:before,
-h4.md-focus:before,
-h5.md-focus:before,
-h6.md-focus:before {
+#write h2.md-focus:before,
+#write h3.md-focus:before,
+#write h4.md-focus:before,
+#write h5.md-focus:before,
+#write h6.md-focus:before {
   color: inherit;
   border: inherit;
   border-radius: inherit;
@@ -1822,73 +1815,3 @@ h6.md-focus:before {
   color: var(--color-text-strong);
   transition: color 0.2s ease;
 }
-
-/* =========================
-   7. Mermaid 图表样式
-   ========================= */
-
-/* Mermaid 代码块 - 宽图表可突破写作区域 */
-#write .md-fences[lang="mermaid"] {
-  max-width: none;
-  background: transparent !important;
-  border: none !important;
-  padding: 1.5em 0 !important;
-  box-shadow: none !important;
-}
-
-/* Mermaid 图表使用主题字体 */
-#write .md-fences[lang="mermaid"] svg text {
-  font-family: var(--font-family-sans-cjk) !important;
-}
-
-/* 去除 Mermaid SVG 容器的背景色和边框 */
-#write .md-fences[lang="mermaid"] svg {
-  background: transparent !important;
-  border: none !important;
-}
-
-/* 去除 Mermaid 图表的整体背景矩形 */
-#write .md-fences[lang="mermaid"] svg > rect:first-child {
-  fill: transparent !important;
-  stroke: none !important;
-}
-
-/* 去除所有背景层 */
-#write .md-fences[lang="mermaid"] svg g.background rect,
-#write .md-fences[lang="mermaid"] svg g[class*="background"] rect {
-  fill: transparent !important;
-  stroke: none !important;
-}
-
-/* 保持节点和形状的样式 */
-#write .md-fences[lang="mermaid"] svg .node rect,
-#write .md-fences[lang="mermaid"] svg .node circle,
-#write .md-fences[lang="mermaid"] svg .node ellipse,
-#write .md-fences[lang="mermaid"] svg .node polygon,
-#write .md-fences[lang="mermaid"] svg .cluster rect {
-  fill: #ffffff !important;
-  stroke: #d0d0d0 !important;
-  stroke-width: 1.5px !important;
-}
-
-/* 调整文本颜色以适应主题 */
-#write .md-fences[lang="mermaid"] svg .nodeLabel,
-#write .md-fences[lang="mermaid"] svg .edgeLabel,
-#write .md-fences[lang="mermaid"] svg text {
-  fill: var(--color-text) !important;
-  color: var(--color-text) !important;
-}
-
-/* 调整连接线颜色 */
-#write .md-fences[lang="mermaid"] svg .edgePath path,
-#write .md-fences[lang="mermaid"] svg .flowchart-link {
-  stroke: #999999 !important;
-  stroke-width: 1.5px !important;
-}
-
-/* 调整箭头颜色 */
-#write .md-fences[lang="mermaid"] svg marker path {
-  fill: #999999 !important;
-  stroke: #999999 !important;
-}
-
